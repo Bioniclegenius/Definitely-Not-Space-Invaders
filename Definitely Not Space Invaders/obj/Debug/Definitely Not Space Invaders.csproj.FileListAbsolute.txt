@@ -1,0 +1,18 @@
+c:\users\david.berry\documents\visual studio 2013\Projects\Definitely Not Space Invaders\Definitely Not Space Invaders\bin\Debug\Definitely Not Space Invaders.exe.config
+c:\users\david.berry\documents\visual studio 2013\Projects\Definitely Not Space Invaders\Definitely Not Space Invaders\bin\Debug\Definitely Not Space Invaders.exe
+c:\users\david.berry\documents\visual studio 2013\Projects\Definitely Not Space Invaders\Definitely Not Space Invaders\bin\Debug\Definitely Not Space Invaders.pdb
+c:\users\david.berry\documents\visual studio 2013\Projects\Definitely Not Space Invaders\Definitely Not Space Invaders\obj\Debug\Definitely Not Space Invaders.csprojResolveAssemblyReference.cache
+c:\users\david.berry\documents\visual studio 2013\Projects\Definitely Not Space Invaders\Definitely Not Space Invaders\obj\Debug\Definitely_Not_Space_Invaders.Form1.resources
+c:\users\david.berry\documents\visual studio 2013\Projects\Definitely Not Space Invaders\Definitely Not Space Invaders\obj\Debug\Definitely_Not_Space_Invaders.Properties.Resources.resources
+c:\users\david.berry\documents\visual studio 2013\Projects\Definitely Not Space Invaders\Definitely Not Space Invaders\obj\Debug\Definitely Not Space Invaders.csproj.GenerateResource.Cache
+c:\users\david.berry\documents\visual studio 2013\Projects\Definitely Not Space Invaders\Definitely Not Space Invaders\obj\Debug\Definitely Not Space Invaders.exe
+c:\users\david.berry\documents\visual studio 2013\Projects\Definitely Not Space Invaders\Definitely Not Space Invaders\obj\Debug\Definitely Not Space Invaders.pdb
+C:\Users\david.berry\Documents\Visual Studio 2013\Projects\Definitely-Not-Space-Invaders\Definitely Not Space Invaders\bin\Debug\Definitely Not Space Invaders.exe.config
+C:\Users\david.berry\Documents\Visual Studio 2013\Projects\Definitely-Not-Space-Invaders\Definitely Not Space Invaders\obj\Debug\Definitely Not Space Invaders.exe
+C:\Users\david.berry\Documents\Visual Studio 2013\Projects\Definitely-Not-Space-Invaders\Definitely Not Space Invaders\obj\Debug\Definitely Not Space Invaders.pdb
+C:\Users\david.berry\Documents\Visual Studio 2013\Projects\Definitely-Not-Space-Invaders\Definitely Not Space Invaders\bin\Debug\Definitely Not Space Invaders.exe
+C:\Users\david.berry\Documents\Visual Studio 2013\Projects\Definitely-Not-Space-Invaders\Definitely Not Space Invaders\bin\Debug\Definitely Not Space Invaders.pdb
+C:\Users\david.berry\Documents\Visual Studio 2013\Projects\Definitely-Not-Space-Invaders\Definitely Not Space Invaders\obj\Debug\Definitely Not Space Invaders.csprojResolveAssemblyReference.cache
+C:\Users\david.berry\Documents\Visual Studio 2013\Projects\Definitely-Not-Space-Invaders\Definitely Not Space Invaders\obj\Debug\Definitely_Not_Space_Invaders.Form1.resources
+C:\Users\david.berry\Documents\Visual Studio 2013\Projects\Definitely-Not-Space-Invaders\Definitely Not Space Invaders\obj\Debug\Definitely_Not_Space_Invaders.Properties.Resources.resources
+C:\Users\david.berry\Documents\Visual Studio 2013\Projects\Definitely-Not-Space-Invaders\Definitely Not Space Invaders\obj\Debug\Definitely Not Space Invaders.csproj.GenerateResource.Cache
