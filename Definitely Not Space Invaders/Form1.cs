@@ -14,7 +14,6 @@ namespace Definitely_Not_Space_Invaders {
     public Form1() {
       InitializeComponent();
     }
-
     private void Form1_Load(object sender,EventArgs e) {
       this.ClientSize=new Size(500,500);
       p=new drawingpanel(this.Width,this.Height);
