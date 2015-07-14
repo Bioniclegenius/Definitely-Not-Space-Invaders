@@ -36,22 +36,18 @@ namespace Definitely_Not_Space_Invaders {
           if(perc<0)
             perc+=1;
           perc=1-perc;
-          b.Color=Color.FromArgb((int)((196-32*z)+.5),(int)((196-32*z)+.5),(int)((196-32*z)+.5));
+          perc*=255;
+          b.Color=Color.FromArgb((int)(perc),(int)((196-32*z)+.5),(int)((196-32*z)+.5),(int)((196-32*z)+.5));
           g.FillRectangle(b,(int)(x-z+.5),(int)(y+.5),1,1);
-          b.Color=Color.FromArgb((int)((196-32*z)*perc+.5),(int)((196-32*z)*perc+.5),(int)((196-32*z)*perc+.5));
           g.FillRectangle(b,(int)(x+z+.5),(int)(y+.5),1,1);
           g.FillRectangle(b,(int)(x+.5),(int)(y-z+.5),1,1);
           g.FillRectangle(b,(int)(x+.5),(int)(y+z+.5),1,1);
-          perc=1-perc;
-          b.Color=Color.FromArgb((int)((196-32*z)*perc+.5),(int)((196-32*z)*perc+.5),(int)((196-32*z)*perc+.5));
-          if(z==(int)(size/10.0+.5)-1)
-            g.FillRectangle(b,(int)(x-z-.5),(int)(y+.5),1,1);
-          if(perc>=.5)
-            g.FillRectangle(b,(int)(x+z-.5),(int)(y+.5),1,1);
-          if(z!=0||perc>=.5) {
-            g.FillRectangle(b,(int)(x-.5),(int)(y-z+.5),1,1);
-            g.FillRectangle(b,(int)(x-.5),(int)(y+z+.5),1,1);
-          }
+          perc=255-perc;
+          b.Color=Color.FromArgb((int)(perc),(int)((196-32*z)+.5),(int)((196-32*z)+.5),(int)((196-32*z)+.5));
+          g.FillRectangle(b,(int)(x-z-.5),(int)(y+.5),1,1);
+          g.FillRectangle(b,(int)(x+z-.5),(int)(y+.5),1,1);
+          g.FillRectangle(b,(int)(x-.5),(int)(y-z+.5),1,1);
+          g.FillRectangle(b,(int)(x-.5),(int)(y+z+.5),1,1);
         }
       }
     }
