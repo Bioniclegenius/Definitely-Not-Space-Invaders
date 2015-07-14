@@ -40,12 +40,6 @@ namespace Definitely_Not_Space_Invaders {
         g.FillRectangle(b,0,0,this.Width,this.Height);
         for(int x=0;x<stars.Count;x++)
           stars[x].paint(g,this.Width,this.Height,time);
-
-        player.render(g, this.Width, this.Height, time);
-          if(player.curHP <= 0)
-          {
-              player.deathAnimation();
-          }
         for(int x=0;x<enemies.Count;x++) {
           enemies[x].render(g,this.Width,this.Height,time);
           if(enemies[x].curHP<=0) {
@@ -53,6 +47,10 @@ namespace Definitely_Not_Space_Invaders {
             enemies.RemoveAt(x);
             x--;
           }
+        }
+        player.render(g,this.Width,this.Height,time);
+        if(player.curHP<=0) {
+          player.deathAnimation();
         }
         if(lasttime%10000<time)
           enemies.Add(new BasicTriangleEnemy(this.Width,this.Height));

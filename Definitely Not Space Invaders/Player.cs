@@ -64,47 +64,9 @@ namespace Definitely_Not_Space_Invaders
       timestamp+=(int)(msPassed);
       int partSpawnTime=30;
       if(timestamp>partSpawnTime) {
-        int rcol=0,gcol=0,bcol=0;
-        switch(r.Next(0,7)) {
-          case 0:
-            rcol=255;
-            gcol=0;
-            bcol=0;
-            break;
-          case 1:
-            rcol=255;
-            gcol=127;
-            bcol=0;
-            break;
-          case 2:
-            rcol=255;
-            gcol=255;
-            bcol=0;
-            break;
-          case 3:
-            rcol=0;
-            gcol=255;
-            bcol=0;
-            break;
-          case 4:
-            rcol=0;
-            gcol=255;
-            bcol=255;
-            break;
-          case 5:
-            rcol=0;
-            gcol=0;
-            bcol=255;
-            break;
-          case 6:
-            rcol=255;
-            gcol=0;
-            bcol=255;
-            break;
-        }
         float velocity=r.Next(750,1500);
         velocity/=1000;
-        particles.Add(new particle(x-8,y,3,r.Next(160,200),velocity,velocity/100,100,rcol,gcol,bcol));
+        particles.Add(new particle(x-8,y,3,r.Next(160,200),velocity,velocity/100,100,r.Next(0,7)));
         timestamp-=partSpawnTime;
       }
       for(int z=0;z<origVerts.Count;z++) {
