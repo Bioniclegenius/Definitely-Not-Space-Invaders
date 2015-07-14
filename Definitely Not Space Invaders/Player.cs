@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Definitely_Not_Space_Invaders
 {
-    class Player{
+    public class Player{
         public int curHP, maxHP;
         public double x, y, ang;
     public Player(int scrWidth,int scrHeight) {
@@ -17,14 +17,14 @@ namespace Definitely_Not_Space_Invaders
       maxHP=20;
       curHP=maxHP;
     }
-    public override void ai(int scrWidth,int scrHeight,long msPassed) {
+    public void ai(int scrWidth,int scrHeight,long msPassed) {
       double spd=0;
       if(x>-20)
         x-=spd*msPassed;
       else
         curHP=0;
     }
-    public override void render(Graphics g,int scrWidth,int scrHeight,long msPassed) {
+    public void render(Graphics g,int scrWidth,int scrHeight,long msPassed) {
       ai(scrWidth,scrHeight,msPassed);
       int rad=25;
       Point[] verts=new Point[3];
@@ -37,7 +37,7 @@ namespace Definitely_Not_Space_Invaders
       SolidBrush b=new SolidBrush(Color.FromArgb(255,0,0));
       g.FillPolygon(b,verts);
     }
-    public override void deathAnimation() {
+    public void deathAnimation() {
       if(x<=-20) {//no animation if it died by just moving offscreen
       }
       else {//animation if it was killed by the player
