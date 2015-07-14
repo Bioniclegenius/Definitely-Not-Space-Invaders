@@ -62,6 +62,7 @@ namespace Definitely_Not_Space_Invaders {
     public void MouseMoveEvent(object sender,MouseEventArgs m) {
       int mouseX=m.X;
       int mouseY=m.Y;
+      player.mousemove(mouseX,mouseY);
       //do whatever you so wish with this information, the mouse X and Y coordinates
     }
     public void MouseDownEvent(object sender,MouseEventArgs m) {//if the user is pressing the mouse button
