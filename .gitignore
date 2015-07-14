@@ -1,3 +1,6 @@
 *.exe
 Definitely Not Space Invaders/bin/Debug/Definitely Not Space Invaders.exe
 *.pdb
+*.exe
+*.exe
+Definitely Not Space Invaders/obj/Debug/Definitely Not Space Invaders.pdb
