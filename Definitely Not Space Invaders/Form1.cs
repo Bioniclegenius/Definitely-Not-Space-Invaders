@@ -15,8 +15,10 @@ namespace Definitely_Not_Space_Invaders {
       InitializeComponent();
     }
     private void Form1_Load(object sender,EventArgs e) {
-      this.ClientSize=new Size(500,500);
-      p=new drawingpanel(this.Width,this.Height);
+      int scrWidth=800;
+      int scrHeight=500;
+      this.ClientSize=new Size(scrWidth,scrHeight);
+      p=new drawingpanel(scrWidth,scrHeight);
       this.Controls.Add(p);
     }
   }

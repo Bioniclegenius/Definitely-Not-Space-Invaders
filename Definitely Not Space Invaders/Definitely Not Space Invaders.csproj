@@ -44,9 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicTriangleEnemy.cs" />
     <Compile Include="drawingpanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="enemycontainer.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
