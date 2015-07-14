@@ -15,7 +15,7 @@ namespace Definitely_Not_Space_Invaders {
       curHP=maxHP;
     }
     public override void ai(int scrWidth,int scrHeight,long msPassed) {
-      double spd=.030;
+      double spd=.050;
       if(x>-20)
         x-=spd*msPassed;
       else
