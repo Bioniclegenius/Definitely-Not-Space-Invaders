@@ -10,6 +10,7 @@ namespace Definitely_Not_Space_Invaders
     public class Player{
         public int curHP, maxHP;
         public double x, y, ang;
+
     public Player(int scrWidth,int scrHeight) {
         x = 20;
         y = scrHeight/2 + 10;

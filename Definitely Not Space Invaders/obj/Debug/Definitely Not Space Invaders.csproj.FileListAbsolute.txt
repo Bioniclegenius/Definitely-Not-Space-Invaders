@@ -22,3 +22,6 @@ C:\Users\kyle.spears\Documents\Visual Studio 2013\Projects\Definitely-Not-Space-
 C:\Users\kyle.spears\Documents\Visual Studio 2013\Projects\Definitely-Not-Space-Invaders\Definitely Not Space Invaders\obj\Debug\Definitely Not Space Invaders.csproj.GenerateResource.Cache
 C:\Users\kyle.spears\Documents\Visual Studio 2013\Projects\Definitely-Not-Space-Invaders\Definitely Not Space Invaders\obj\Debug\Definitely Not Space Invaders.exe
 C:\Users\kyle.spears\Documents\Visual Studio 2013\Projects\Definitely-Not-Space-Invaders\Definitely Not Space Invaders\obj\Debug\Definitely Not Space Invaders.pdb
+C:\Users\kyle.spears\Documents\Visual Studio 2013\Projects\Definitely-Not-Space-Invaders\Definitely Not Space Invaders\bin\Debug\Definitely Not Space Invaders.exe.config
+C:\Users\kyle.spears\Documents\Visual Studio 2013\Projects\Definitely-Not-Space-Invaders\Definitely Not Space Invaders\bin\Debug\Definitely Not Space Invaders.exe
+C:\Users\kyle.spears\Documents\Visual Studio 2013\Projects\Definitely-Not-Space-Invaders\Definitely Not Space Invaders\bin\Debug\Definitely Not Space Invaders.pdb
