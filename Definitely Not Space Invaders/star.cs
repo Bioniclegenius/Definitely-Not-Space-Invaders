@@ -17,8 +17,8 @@ namespace Definitely_Not_Space_Invaders {
     }
     public void paint(Graphics g,int scrWidth,int scrHeight,long mspassed=0) {
       SolidBrush b;
-      double basespeed=.020;
-      double speedfactor=.0005;
+      double basespeed=.003;
+      double speedfactor=.0002;
       double curspeed=basespeed+(size-1)*speedfactor;
       x-=curspeed*mspassed;
       if(x<-5) {
