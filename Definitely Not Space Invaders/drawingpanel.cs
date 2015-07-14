@@ -12,6 +12,7 @@ namespace Definitely_Not_Space_Invaders {
     public System.Diagnostics.Stopwatch st=new System.Diagnostics.Stopwatch();
     public long lasttime;
     public List<enemycontainer> enemies;
+    public List<playerContainer> player;
     public bool mouseheld=false;
     public drawingpanel(int dimx=100,int dimy=100) {
       this.Size=new Size(dimx,dimy);
@@ -23,6 +24,7 @@ namespace Definitely_Not_Space_Invaders {
       this.MouseUp+=new System.Windows.Forms.MouseEventHandler(this.MouseUpEvent);
       stars=new List<star>();
       enemies=new List<enemycontainer>();
+      player = new List<playerContainer>();
       for(int x=0;x<50.0*Math.Sqrt(dimx*dimy)/100;x++)
         stars.Add(new star(dimx,dimy));
       st.Start();
@@ -38,6 +40,13 @@ namespace Definitely_Not_Space_Invaders {
         g.FillRectangle(b,0,0,this.Width,this.Height);
         for(int x=0;x<stars.Count;x++)
           stars[x].paint(g,this.Width,this.Height,time);
+
+        player[0].render(g, this.Width, this.Height, time);
+          if(player[0].curHP <= 0)
+          {
+              player[0].deathAnimation();
+              player.RemoveAt(0);
+          }
         for(int x=0;x<enemies.Count;x++) {
           enemies[x].render(g,this.Width,this.Height,time);
           if(enemies[x].curHP<=0) {
