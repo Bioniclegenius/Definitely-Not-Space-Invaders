@@ -16,9 +16,9 @@ namespace Definitely_Not_Space_Invaders {
       size=r.Next(1,51);
     }
     public void paint(Graphics g,int scrWidth,int scrHeight,long mspassed=0) {
-      SolidBrush b;
-      double basespeed=.020;
-      double speedfactor=.0005;
+      SolidBrush b=new SolidBrush(Color.FromArgb(196,196,196));
+      double basespeed=.003;
+      double speedfactor=.0002;
       double curspeed=basespeed+(size-1)*speedfactor;
       x-=curspeed*mspassed;
       if(x<-5) {
@@ -28,11 +28,30 @@ namespace Definitely_Not_Space_Invaders {
       }
       if(x<scrWidth+5) {
         for(int z=0;z<(int)(size/10.0+.5);z++) {
-          b=new SolidBrush(Color.FromArgb(196-32*z,196-32*z,196-32*z));
+          double perc=x;
+          perc-=(int)(x);
+          perc*=100;
+          perc=(int)(perc);
+          perc/=100;
+          if(perc<0)
+            perc+=1;
+          perc=1-perc;
+          b.Color=Color.FromArgb((int)((196-32*z)+.5),(int)((196-32*z)+.5),(int)((196-32*z)+.5));
           g.FillRectangle(b,(int)(x-z+.5),(int)(y+.5),1,1);
+          b.Color=Color.FromArgb((int)((196-32*z)*perc+.5),(int)((196-32*z)*perc+.5),(int)((196-32*z)*perc+.5));
           g.FillRectangle(b,(int)(x+z+.5),(int)(y+.5),1,1);
           g.FillRectangle(b,(int)(x+.5),(int)(y-z+.5),1,1);
           g.FillRectangle(b,(int)(x+.5),(int)(y+z+.5),1,1);
+          perc=1-perc;
+          b.Color=Color.FromArgb((int)((196-32*z)*perc+.5),(int)((196-32*z)*perc+.5),(int)((196-32*z)*perc+.5));
+          if(z==(int)(size/10.0+.5)-1)
+            g.FillRectangle(b,(int)(x-z-.5),(int)(y+.5),1,1);
+          if(perc>=.5)
+            g.FillRectangle(b,(int)(x+z-.5),(int)(y+.5),1,1);
+          if(z!=0||perc>=.5) {
+            g.FillRectangle(b,(int)(x-.5),(int)(y-z+.5),1,1);
+            g.FillRectangle(b,(int)(x-.5),(int)(y+z+.5),1,1);
+          }
         }
       }
     }
