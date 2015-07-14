@@ -12,12 +12,15 @@ namespace Definitely_Not_Space_Invaders {
     public System.Diagnostics.Stopwatch st=new System.Diagnostics.Stopwatch();
     public long lasttime;
     public List<enemycontainer> enemies;
+    public bool mouseheld=false;
     public drawingpanel(int dimx=100,int dimy=100) {
       this.Size=new Size(dimx,dimy);
       this.Location=new Point(0,0);
       this.DoubleBuffered=true;
       this.Paint+=new System.Windows.Forms.PaintEventHandler(this.PaintEvent);
       this.MouseMove+=new System.Windows.Forms.MouseEventHandler(this.MouseMoveEvent);
+      this.MouseDown+=new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
+      this.MouseUp+=new System.Windows.Forms.MouseEventHandler(this.MouseUpEvent);
       stars=new List<star>();
       enemies=new List<enemycontainer>();
       for(int x=0;x<50.0*Math.Sqrt(dimx*dimy)/100;x++)
@@ -52,6 +55,12 @@ namespace Definitely_Not_Space_Invaders {
       int mouseX=m.X;
       int mouseY=m.Y;
       //do whatever you so wish with this information, the mouse X and Y coordinates
+    }
+    public void MouseDownEvent(object sender,MouseEventArgs m) {//if the user is pressing the mouse button
+      mouseheld=true;
+    }
+    public void MouseUpEvent(object sender,MouseEventArgs m) {//if the user has released the mouse button
+      mouseheld=false;
     }
   }
 }
