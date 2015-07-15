@@ -59,5 +59,13 @@ namespace Definitely_Not_Space_Invaders {
         }
       }
     }
+    public override void hit(double hitx,double hity,ref List<particle> par) {
+      for(int z=0;z<r.Next(2,6);z++) {
+        double velo=r.Next(500,900);
+        velo/=1000;
+        par.Add(new particle(hitx,hity,2,r.Next(0,360),velo,-velo/2000,500,0,192,63));
+      }
+      curHP--;
+    }
   }
 }

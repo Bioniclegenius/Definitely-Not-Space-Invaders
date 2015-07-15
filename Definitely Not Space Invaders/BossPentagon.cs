@@ -46,5 +46,8 @@ namespace Definitely_Not_Space_Invaders
       else {//animation if it was killed by the player
       }
     }
+    public override void hit(double hitx,double hity,ref List<particle> par) {
+      curHP--;
+    }
   }
 }

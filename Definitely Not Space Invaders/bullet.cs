@@ -40,5 +40,33 @@ namespace Definitely_Not_Space_Invaders {
       p.Width=2;
       g.DrawLine(p,(int)(x+.5),(int)(y+.5),(int)(x-len*Math.Cos(ang*Math.PI/180)+.5),(int)(y-len*Math.Sin(ang*Math.PI/180)+.5));
     }
+    public bool hit(List<Point> poly) {
+      List<PointF> poly2=new List<PointF>();
+      for(int z=0;z<poly.Count;z++)
+        poly2.Add((PointF)(poly[z]));
+      return hit(poly2);
+    }
+    public bool hit(List<PointF> poly) {
+      bool collide=false;
+      for(int z=0;z<=len;z++) {
+        PointF coord=new PointF((float)(x-z*Math.Cos(ang*Math.PI/180)),(float)(y-z*Math.Sin(ang*Math.PI/180)));
+        if(pointInPolygon(coord,poly))
+          collide=true;
+      }
+      return collide;
+    }
+    public bool pointInPolygon(PointF p,List<PointF> poly) {
+      bool inside=false;
+      try {
+        for(int i=0,j=poly.Count-1;i<poly.Count;j=i++) {
+          if(((poly[i].Y>p.Y)!=(poly[j].Y>p.Y))&&(p.X<(poly[j].X-poly[i].X)*(p.Y-poly[i].Y)/(poly[j].Y-poly[i].Y)+poly[i].X))
+            inside=!inside;
+        }
+      }
+      catch(Exception E) {
+        inside=false;
+      }
+      return inside;
+    }
   }
 }

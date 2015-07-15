@@ -42,5 +42,6 @@ namespace Definitely_Not_Space_Invaders {
       //^
       //Whenever initializing, unless your AI has something different (like charging), do this at the end
     }
+    public abstract void hit(double hitx,double hity,ref List<particle> par);//Run when something hits the enemy
   }
 }

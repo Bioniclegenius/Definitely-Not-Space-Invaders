@@ -17,32 +17,6 @@ namespace Definitely_Not_Space_Invaders {
     public List<particle> particles;
     public Player player;
     public bool mouseheld=false;
-    public bool pointInPolygon(Point p,List<Point> poly) {
-      bool inside=false;
-      try {
-        for(int i=0,j=poly.Count-1;i<poly.Count;j=i++) {
-          if(((poly[i].Y>p.Y)!=(poly[j].Y>p.Y))&&(p.X<(poly[j].X-poly[i].X)*(p.Y-poly[i].Y)/(poly[j].Y-poly[i].Y)+poly[i].X))
-            inside=!inside;
-        }
-      }
-      catch(Exception E) {
-        inside=false;
-      }
-      return inside;
-    }
-    public bool pointInPolygon(Point p,List<PointF> poly) {
-      bool inside=false;
-      try {
-        for(int i=0,j=poly.Count-1;i<poly.Count;j=i++) {
-          if(((poly[i].Y>p.Y)!=(poly[j].Y>p.Y))&&(p.X<(poly[j].X-poly[i].X)*(p.Y-poly[i].Y)/(poly[j].Y-poly[i].Y)+poly[i].X))
-            inside=!inside;
-        }
-      }
-      catch(Exception E) {
-        inside=false;
-      }
-      return inside;
-    }
     public drawingpanel(int dimx=100,int dimy=100) {
       this.Size=new Size(dimx,dimy);
       this.Location=new Point(0,0);
@@ -85,7 +59,7 @@ namespace Definitely_Not_Space_Invaders {
 
         for(int x=0;x<bullets.Count;x++) {//all enemy bullets
           bullets[x].render(g,this.Width,this.Height,time);
-          if(pointInPolygon(new Point((int)(bullets[x].x+.5),(int)(bullets[x].y+.5)),player.verts)) {
+          if(bullets[x].hit(player.verts)) {
             bullets[x].done=true;
             player.curHP--;
           }
@@ -98,10 +72,9 @@ namespace Definitely_Not_Space_Invaders {
         for(int x=0;x<playerbullets.Count;x++) {//the player's bullets
           playerbullets[x].render(g,this.Width,this.Height,time);
           for(int y=0;y<enemies.Count;y++)
-            if(pointInPolygon(new Point((int)(playerbullets[x].x+.5),(int)(playerbullets[x].y+.5)),
-                              enemies[y].verts)) {
+            if(playerbullets[x].hit(enemies[y].verts)) {
               playerbullets[x].done=true;
-              enemies[y].curHP--;
+              enemies[y].hit(playerbullets[x].x,playerbullets[x].y,ref particles);
             }
           if(playerbullets[x].done) {
             playerbullets.RemoveAt(x);
