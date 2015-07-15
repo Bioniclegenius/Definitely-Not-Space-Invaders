@@ -16,15 +16,15 @@ namespace Definitely_Not_Space_Invaders
       maxHP=5;
       curHP=maxHP;
     }
-    public override void ai(int scrWidth,int scrHeight,long msPassed) {
+    public override void ai(int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul) {
       double spd=.070;
       if(x>-20)
         x-=spd*msPassed;
       else
         curHP=0;
     }
-    public override void render(Graphics g,int scrWidth,int scrHeight,long msPassed) {
-      ai(scrWidth,scrHeight,msPassed);
+    public override void render(Graphics g,int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul) {
+      ai(scrWidth,scrHeight,msPassed,ref bul);
       int rad=45;
       List<Point> verts=new List<Point>();
       verts.Add(new Point((int)(x+rad*Math.Cos(ang*Math.PI/180) + .5),
@@ -40,7 +40,7 @@ namespace Definitely_Not_Space_Invaders
       SolidBrush b=new SolidBrush(Color.FromArgb(190,0,190));
       g.FillPolygon(b,verts.ToArray());
     }
-    public override void deathAnimation() {
+    public override void deathAnimation(ref List<particle> par) {
       if(x<=-20) {//no animation if it died by just moving offscreen
       }
       else {//animation if it was killed by the player

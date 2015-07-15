@@ -12,7 +12,9 @@ namespace Definitely_Not_Space_Invaders
     public double x, y, ang;
     public List<PointF> origVerts;
     public List<particle> particles;
-    int timestamp;
+    public int timestamp;
+    public int bulTimer;
+    public int bulCooldown;
     Random r=new Random();
     int goalx,goaly;
     public Player(int scrWidth,int scrHeight) {
@@ -48,8 +50,10 @@ namespace Definitely_Not_Space_Invaders
       origVerts.Add(new PointF(1,-1));
       origVerts.Add(new PointF(7,-1));
       origVerts.Add(new PointF(8,0));
+      bulCooldown=0;
+      bulTimer=500;
     }
-    public void ai(int scrWidth,int scrHeight,long msPassed) {
+    public void ai(int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul,bool mousedown) {
       double moveang=Math.Atan2(goaly-y,goalx-x);
       double playerspd=0.300;
       double moverad=10;
@@ -57,9 +61,18 @@ namespace Definitely_Not_Space_Invaders
         x+=playerspd*msPassed*Math.Cos(moveang);
         y+=playerspd*msPassed*Math.Sin(moveang);
       }
+      if(bulCooldown>0)
+        bulCooldown-=(int)(msPassed);
+      if(mousedown&&bulCooldown<=0) {
+        bulCooldown+=bulTimer;
+        bul.Add(new bullet(x+6,y-11,0));
+        bul.Add(new bullet(x+6,y+11,0));
+      }
+      else if(bulCooldown<0)
+        bulCooldown=0;
     }
-    public void render(Graphics g,int scrWidth,int scrHeight,long msPassed) {
-      ai(scrWidth,scrHeight,msPassed);
+    public void render(Graphics g,int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul,bool mousedown) {
+      ai(scrWidth,scrHeight,msPassed,ref bul,mousedown);
       List<PointF> verts=new List<PointF>();
       timestamp+=(int)(msPassed);
       int partSpawnTime=30;

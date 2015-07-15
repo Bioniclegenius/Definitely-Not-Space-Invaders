@@ -12,6 +12,9 @@ namespace Definitely_Not_Space_Invaders {
     public System.Diagnostics.Stopwatch st=new System.Diagnostics.Stopwatch();
     public long lasttime;
     public List<enemycontainer> enemies;
+    public List<bullet> bullets;
+    public List<bullet> playerbullets;
+    public List<particle> particles;
     public Player player;
     public bool mouseheld=false;
     public drawingpanel(int dimx=100,int dimy=100) {
@@ -24,6 +27,9 @@ namespace Definitely_Not_Space_Invaders {
       this.MouseUp+=new System.Windows.Forms.MouseEventHandler(this.MouseUpEvent);
       stars=new List<star>();
       enemies=new List<enemycontainer>();
+      bullets=new List<bullet>();
+      playerbullets=new List<bullet>();
+      particles=new List<particle>();
       player = new Player(dimx, dimy);
       for(int x=0;x<50.0*Math.Sqrt(dimx*dimy)/100;x++)
         stars.Add(new star(dimx,dimy));
@@ -40,15 +46,29 @@ namespace Definitely_Not_Space_Invaders {
         g.FillRectangle(b,0,0,this.Width,this.Height);
         for(int x=0;x<stars.Count;x++)
           stars[x].paint(g,this.Width,this.Height,time);
+        for(int x=0;x<bullets.Count;x++) {
+          bullets[x].render(g,this.Width,this.Height,time);
+          if(bullets[x].done) {
+            bullets.RemoveAt(x);
+            x--;
+          }
+        }
+        for(int x=0;x<playerbullets.Count;x++) {
+          playerbullets[x].render(g,this.Width,this.Height,time);
+          if(playerbullets[x].done) {
+            playerbullets.RemoveAt(x);
+            x--;
+          }
+        }
         for(int x=0;x<enemies.Count;x++) {
-          enemies[x].render(g,this.Width,this.Height,time);
+          enemies[x].render(g,this.Width,this.Height,time,ref bullets);
           if(enemies[x].curHP<=0) {
-            enemies[x].deathAnimation();
+            enemies[x].deathAnimation(ref particles);
             enemies.RemoveAt(x);
             x--;
           }
         }
-        player.render(g,this.Width,this.Height,time);
+        player.render(g,this.Width,this.Height,time,ref playerbullets,mouseheld);
         if(player.curHP<=0) {
           player.deathAnimation();
         }

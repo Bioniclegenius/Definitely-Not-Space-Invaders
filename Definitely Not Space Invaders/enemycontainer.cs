@@ -33,10 +33,9 @@ namespace Definitely_Not_Space_Invaders {
     //On the angle, let's agree to use Degrees as a standard. 0 is right, 90 is up, and so on.
     public int curHP,maxHP;
     public static Random r=new Random();
-    public abstract void render(Graphics g,int scrWidth,int scrHeight,long msPassed);//calls AI, then draws enemy
-    public abstract void deathAnimation();//Gets called when curHP<=0. Just add particles or whatever, and go
-    public abstract void ai(int scrWidth,int scrHeight,long msPassed);//the brains of the operation
-    //List<bullet> bullets;//Add this back in after Justin designs the bullet class
+    public abstract void render(Graphics g,int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul);//calls AI, then draws enemy
+    public abstract void deathAnimation(ref List<particle> par);//Gets called when curHP<=0. Just add particles or whatever, and go
+    public abstract void ai(int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul);//the brains of the operation
     public enemycontainer() {//Make sure in your constructors to pass in screen size
       //curHP=maxHP;
       //^
