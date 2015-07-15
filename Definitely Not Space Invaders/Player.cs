@@ -12,7 +12,7 @@ namespace Definitely_Not_Space_Invaders
     public double x, y, ang;
     public List<PointF> origVerts;
     public List<particle> particles;
-    public List<Point> verts;
+    public List<PointF> verts;
     public int timestamp;
     public int bulTimer;
     public int bulCooldown;
@@ -74,7 +74,7 @@ namespace Definitely_Not_Space_Invaders
     }
     public void render(Graphics g,int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul,bool mousedown) {
       ai(scrWidth,scrHeight,msPassed,ref bul,mousedown);
-      verts=new List<Point>();
+      verts=new List<PointF>();
       timestamp+=(int)(msPassed);
       int partSpawnTime=30;
       if(timestamp>partSpawnTime) {
@@ -84,7 +84,7 @@ namespace Definitely_Not_Space_Invaders
         timestamp-=partSpawnTime;
       }
       for(int z=0;z<origVerts.Count;z++) {
-        verts.Add(new Point((int)(2*origVerts[z].X+x+.5),(int)(2*origVerts[z].Y+y+.5)));
+        verts.Add(new PointF((float)(2*origVerts[z].X+x),(float)(2*origVerts[z].Y+y)));
             //(float)(2*origVerts[z].X*Math.Cos(ang*Math.PI/180)-2*origVerts[z].Y*Math.Sin(ang*Math.PI/180)+x),
             //(float)(2*origVerts[z].X*Math.Sin(ang*Math.PI/180)+2*origVerts[z].Y*Math.Cos(ang*Math.PI/180)+y)));
       }
@@ -97,6 +97,8 @@ namespace Definitely_Not_Space_Invaders
       }
       SolidBrush b=new SolidBrush(Color.FromArgb(255,255,255));
       g.FillPolygon(b,verts.ToArray());
+      Font f=new Font("Segoi UI",10);
+      g.DrawString(Convert.ToString(curHP)+"/"+Convert.ToString(maxHP),f,b,new PointF(5,5));
     }
     public void deathAnimation() {
     }

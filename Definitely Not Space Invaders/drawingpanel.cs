@@ -30,6 +30,19 @@ namespace Definitely_Not_Space_Invaders {
       }
       return inside;
     }
+    public bool pointInPolygon(Point p,List<PointF> poly) {
+      bool inside=false;
+      try {
+        for(int i=0,j=poly.Count-1;i<poly.Count;j=i++) {
+          if(((poly[i].Y>p.Y)!=(poly[j].Y>p.Y))&&(p.X<(poly[j].X-poly[i].X)*(p.Y-poly[i].Y)/(poly[j].Y-poly[i].Y)+poly[i].X))
+            inside=!inside;
+        }
+      }
+      catch(Exception E) {
+        inside=false;
+      }
+      return inside;
+    }
     public drawingpanel(int dimx=100,int dimy=100) {
       this.Size=new Size(dimx,dimy);
       this.Location=new Point(0,0);
