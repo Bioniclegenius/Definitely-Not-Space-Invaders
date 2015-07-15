@@ -26,7 +26,7 @@ namespace Definitely_Not_Space_Invaders
     public override void render(Graphics g,int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul) {
       ai(scrWidth,scrHeight,msPassed,ref bul);
       int rad=45;
-      List<Point> verts=new List<Point>();
+      verts=new List<Point>();
       verts.Add(new Point((int)(x+rad*Math.Cos(ang*Math.PI/180) + .5),
                          (int)(y+rad*Math.Sin(ang*Math.PI/180)+.5)));
       verts.Add(new Point((int)(x + rad * Math.Cos((ang - 72) * Math.PI / 180) + .5),

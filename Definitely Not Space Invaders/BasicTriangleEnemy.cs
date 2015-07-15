@@ -33,7 +33,7 @@ namespace Definitely_Not_Space_Invaders {
     }
     public override void render(Graphics g,int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul) {
       ai(scrWidth,scrHeight,msPassed,ref bul);
-      List<Point> verts=new List<Point>();
+      verts=new List<Point>();
       verts.Add(new Point((int)(x+rad*Math.Cos(ang*Math.PI/180)+.5),
                          (int)(y+rad*Math.Sin(ang*Math.PI/180)+.5)));
       verts.Add(new Point((int)(x+rad*Math.Cos((ang-140)*Math.PI/180)+.5),
@@ -48,14 +48,14 @@ namespace Definitely_Not_Space_Invaders {
       }
       else {//animation if it was killed by the player
         for(int z=0;z<20;z++) {
-          double velo=r.Next(750,1250);
+          double velo=r.Next(500,900);
           velo/=1000;
-          par.Add(new particle(x,y,3,r.Next(0,360),velo,-velo/2000,500,0,192,63));
+          par.Add(new particle(x,y,2,r.Next(0,360),velo,-velo/2000,500,0,192,63));
         }
         for(int z=0;z<5;z++) {
           double velo=r.Next(750,1250);
           velo/=1000;
-          par.Add(new particle(x,y,3,r.Next(0,360),velo,-velo/2000,500,r.Next(0,7)));
+          par.Add(new particle(x,y,2,r.Next(0,360),velo,-velo/2000,500,r.Next(0,7)));
         }
       }
     }

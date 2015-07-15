@@ -12,6 +12,7 @@ namespace Definitely_Not_Space_Invaders
     public double x, y, ang;
     public List<PointF> origVerts;
     public List<particle> particles;
+    public List<Point> verts;
     public int timestamp;
     public int bulTimer;
     public int bulCooldown;
@@ -73,17 +74,17 @@ namespace Definitely_Not_Space_Invaders
     }
     public void render(Graphics g,int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul,bool mousedown) {
       ai(scrWidth,scrHeight,msPassed,ref bul,mousedown);
-      List<PointF> verts=new List<PointF>();
+      verts=new List<Point>();
       timestamp+=(int)(msPassed);
       int partSpawnTime=30;
       if(timestamp>partSpawnTime) {
         float velocity=r.Next(750,1500);
         velocity/=1000;
-        particles.Add(new particle(x-8,y,3,r.Next(160,200),velocity,velocity/100,100,r.Next(0,7)));
+        particles.Add(new particle(x-8,y,2,r.Next(160,200),velocity,-velocity/500,500,r.Next(0,7)));
         timestamp-=partSpawnTime;
       }
       for(int z=0;z<origVerts.Count;z++) {
-        verts.Add(new PointF((float)(2*origVerts[z].X+x),(float)(2*origVerts[z].Y+y)));
+        verts.Add(new Point((int)(2*origVerts[z].X+x+.5),(int)(2*origVerts[z].Y+y+.5)));
             //(float)(2*origVerts[z].X*Math.Cos(ang*Math.PI/180)-2*origVerts[z].Y*Math.Sin(ang*Math.PI/180)+x),
             //(float)(2*origVerts[z].X*Math.Sin(ang*Math.PI/180)+2*origVerts[z].Y*Math.Cos(ang*Math.PI/180)+y)));
       }

@@ -17,6 +17,19 @@ namespace Definitely_Not_Space_Invaders {
     public List<particle> particles;
     public Player player;
     public bool mouseheld=false;
+    public bool pointInPolygon(Point p,List<Point> poly) {
+      bool inside=false;
+      try {
+        for(int i=0,j=poly.Count-1;i<poly.Count;j=i++) {
+          if(((poly[i].Y>p.Y)!=(poly[j].Y>p.Y))&&(p.X<(poly[j].X-poly[i].X)*(p.Y-poly[i].Y)/(poly[j].Y-poly[i].Y)+poly[i].X))
+            inside=!inside;
+        }
+      }
+      catch(Exception E) {
+        inside=false;
+      }
+      return inside;
+    }
     public drawingpanel(int dimx=100,int dimy=100) {
       this.Size=new Size(dimx,dimy);
       this.Location=new Point(0,0);
@@ -43,32 +56,59 @@ namespace Definitely_Not_Space_Invaders {
       long time=st.ElapsedMilliseconds-lasttime;
       lasttime+=time;
       if(time!=0) {
-        g.FillRectangle(b,0,0,this.Width,this.Height);
-        for(int x=0;x<stars.Count;x++)
+
+        g.FillRectangle(b,0,0,this.Width,this.Height);//the background
+
+        for(int x=0;x<stars.Count;x++)//render the stars
           stars[x].paint(g,this.Width,this.Height,time);
-        for(int x=0;x<bullets.Count;x++) {
+
+        for(int x=0;x<particles.Count;x++) {//render the enemy particles
+          particles[x].render(g,this.Width,this.Height,time);
+          if(particles[x].curLife<=0) {
+            particles.RemoveAt(x);
+            x--;
+          }
+        }
+
+        for(int x=0;x<bullets.Count;x++) {//all enemy bullets
           bullets[x].render(g,this.Width,this.Height,time);
+          if(pointInPolygon(new Point((int)(bullets[x].x+.5),(int)(bullets[x].y+.5)),player.verts)) {
+            bullets[x].done=true;
+            player.curHP--;
+          }
           if(bullets[x].done) {
             bullets.RemoveAt(x);
             x--;
           }
         }
-        for(int x=0;x<playerbullets.Count;x++) {
+
+        for(int x=0;x<playerbullets.Count;x++) {//the player's bullets
           playerbullets[x].render(g,this.Width,this.Height,time);
+          for(int y=0;y<enemies.Count;y++)
+            if(pointInPolygon(new Point((int)(playerbullets[x].x+.5),(int)(playerbullets[x].y+.5)),
+                              enemies[y].verts)) {
+              playerbullets[x].done=true;
+              enemies[y].curHP--;
+            }
           if(playerbullets[x].done) {
             playerbullets.RemoveAt(x);
             x--;
           }
         }
-        for(int x=0;x<enemies.Count;x++) {
-          enemies[x].render(g,this.Width,this.Height,time,ref bullets);
+
+        for(int x=0;x<enemies.Count;x++) {//render the enemies
           if(enemies[x].curHP<=0) {
             enemies[x].deathAnimation(ref particles);
             enemies.RemoveAt(x);
             x--;
           }
+          else
+            enemies[x].render(g,this.Width,this.Height,time,ref bullets);
         }
-        player.render(g,this.Width,this.Height,time,ref playerbullets,mouseheld);
+
+        player.render(g,this.Width,this.Height,time,ref playerbullets,mouseheld);//render the player
+
+
         if(player.curHP<=0) {
           player.deathAnimation();
         }

@@ -29,6 +29,7 @@ namespace Definitely_Not_Space_Invaders {
      * function. Furthermore, the main function will contain checks on enemy HP and will handle removing them
      * there - don't worry about it here.
      */
+    public List<Point> verts;
     public double x,y,ang;//x and y of the enemy, angle the enemy's looking
     //On the angle, let's agree to use Degrees as a standard. 0 is right, 90 is up, and so on.
     public int curHP,maxHP;

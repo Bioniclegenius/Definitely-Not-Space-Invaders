@@ -78,8 +78,10 @@ namespace Definitely_Not_Space_Invaders {
       if(curLife>0) {
         x+=vel*Math.Cos(ang*Math.PI/180);
         y+=vel*Math.Sin(ang*Math.PI/180);
-        vel+=acc;
-        curLife--;
+        vel+=acc*msPassed;
+        curLife-=(int)(msPassed);
+        if(curLife<0)
+          curLife=0;
       }
     }
     public void render(Graphics gr,int scrWidth,int scrHeight,long msPassed) {
