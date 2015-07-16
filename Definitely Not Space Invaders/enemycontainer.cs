@@ -29,12 +29,29 @@ namespace Definitely_Not_Space_Invaders {
      * function. Furthermore, the main function will contain checks on enemy HP and will handle removing them
      * there - don't worry about it here.
      */
-    public List<Point> verts;
+    public List<List<PointF> > verts;
+    public List<List<PointF> > origVerts;
+    public List<Color> colors;
     public double x,y,ang;//x and y of the enemy, angle the enemy's looking
     //On the angle, let's agree to use Degrees as a standard. 0 is right, 90 is up, and so on.
     public int curHP,maxHP;
     public static Random r=new Random();
-    public abstract void render(Graphics g,int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul);//calls AI, then draws enemy
+    public void render(Graphics g,int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul) {
+      //calls AI, then draws enemy
+      ai(scrWidth,scrHeight,msPassed,ref bul);
+      verts=new List<List<PointF> >();
+      SolidBrush b=new SolidBrush(Color.FromArgb(255,255,255));
+      for(int t=0;t<origVerts.Count;t++) {
+        verts.Add(new List<PointF>());
+        for(int z=0;z<origVerts[t].Count;z++) {
+          verts[t].Add(new PointF(
+                            (float)(origVerts[t][z].X*Math.Cos(ang*Math.PI/180)-origVerts[t][z].Y*Math.Sin(ang*Math.PI/180)+x),
+                            (float)(origVerts[t][z].X*Math.Sin(ang*Math.PI/180)+origVerts[t][z].Y*Math.Cos(ang*Math.PI/180)+y)));
+        }
+        b.Color=colors[t];
+        g.FillPolygon(b,verts[t].ToArray());
+      }
+    }
     public abstract void deathAnimation(ref List<particle> par);//Gets called when curHP<=0. Just add particles or whatever, and go
     public abstract void ai(int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul);//the brains of the operation
     public enemycontainer() {//Make sure in your constructors to pass in screen size
@@ -42,6 +59,6 @@ namespace Definitely_Not_Space_Invaders {
       //^
       //Whenever initializing, unless your AI has something different (like charging), do this at the end
     }
-    public abstract void hit(double hitx,double hity,ref List<particle> par);//Run when something hits the enemy
+    public abstract void hit(double hitx,double hity,int num,ref List<particle> par);//Run when something hits the enemy
   }
 }

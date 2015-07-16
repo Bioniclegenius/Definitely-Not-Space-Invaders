@@ -16,7 +16,20 @@ namespace Definitely_Not_Space_Invaders {
       maxHP=3;
       curHP=maxHP;
       counter=0;
+      origVerts=new List<List<PointF> >();
+      colors=new List<Color>();
+      origVerts.Add(new List<PointF>());
       rad=15;
+      origVerts[0].Add(new PointF(
+                             (float)(rad),
+                             (float)(0)));
+      origVerts[0].Add(new PointF(
+                             (float)(rad*Math.Cos(140*Math.PI/180)),
+                             (float)(rad*Math.Sin(140*Math.PI/180))));
+      origVerts[0].Add(new PointF(
+                             (float)(rad*Math.Cos(220*Math.PI/180)),
+                             (float)(rad*Math.Sin(220*Math.PI/180))));
+      colors.Add(Color.FromArgb(0,196,63));
     }
     public override void ai(int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul) {
       double spd=.050;
@@ -30,18 +43,6 @@ namespace Definitely_Not_Space_Invaders {
         bul.Add(new bullet(x+rad*Math.Cos(ang*Math.PI/180),y+rad*Math.Sin(ang*Math.PI/180),ang));
         counter-=bulSpawnTime;
       }
-    }
-    public override void render(Graphics g,int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul) {
-      ai(scrWidth,scrHeight,msPassed,ref bul);
-      verts=new List<Point>();
-      verts.Add(new Point((int)(x+rad*Math.Cos(ang*Math.PI/180)+.5),
-                         (int)(y+rad*Math.Sin(ang*Math.PI/180)+.5)));
-      verts.Add(new Point((int)(x+rad*Math.Cos((ang-140)*Math.PI/180)+.5),
-                         (int)(y+rad*Math.Sin((ang-140)*Math.PI/180)+.5)));
-      verts.Add(new Point((int)(x+rad*Math.Cos((ang+140)*Math.PI/180)+.5),
-                         (int)(y+rad*Math.Sin((ang+140)*Math.PI/180)+.5)));
-      SolidBrush b=new SolidBrush(Color.FromArgb(0,192,63));
-      g.FillPolygon(b,verts.ToArray());
     }
     public override void deathAnimation(ref List<particle> par) {
       if(x<=-20) {//no animation if it died by just moving offscreen
@@ -59,7 +60,7 @@ namespace Definitely_Not_Space_Invaders {
         }
       }
     }
-    public override void hit(double hitx,double hity,ref List<particle> par) {
+    public override void hit(double hitx,double hity,int num,ref List<particle> par) {
       for(int z=0;z<r.Next(2,6);z++) {
         double velo=r.Next(500,900);
         velo/=1000;

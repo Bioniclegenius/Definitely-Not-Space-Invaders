@@ -10,9 +10,9 @@ namespace Definitely_Not_Space_Invaders
   public class Player{
     public int curHP, maxHP;
     public double x, y, ang;
-    public List<PointF> origVerts;
+    public List<List<PointF> > origVerts;
     public List<particle> particles;
-    public List<PointF> verts;
+    public List<List<PointF> > verts;
     public int timestamp;
     public int bulTimer;
     public int bulCooldown;
@@ -27,30 +27,31 @@ namespace Definitely_Not_Space_Invaders
       maxHP=20;
       curHP=maxHP;
       timestamp=0;
-      origVerts=new List<PointF>();
+      origVerts=new List<List<PointF> >();
       particles=new List<particle>();
-      origVerts.Add(new PointF(8,0));
-      origVerts.Add(new PointF(7,1));
-      origVerts.Add(new PointF(1,1));
-      origVerts.Add(new PointF(-1,3));
-      origVerts.Add(new PointF(-4,3));
-      origVerts.Add(new PointF(-6,5));
-      origVerts.Add(new PointF(3,5));
-      origVerts.Add(new PointF(3,6));
-      origVerts.Add(new PointF(-7,6));
-      origVerts.Add(new PointF(-7,1));
-      origVerts.Add(new PointF(-8,1));
-      origVerts.Add(new PointF(-8,-1));
-      origVerts.Add(new PointF(-7,-1));
-      origVerts.Add(new PointF(-7,-6));
-      origVerts.Add(new PointF(3,-6));
-      origVerts.Add(new PointF(3,-5));
-      origVerts.Add(new PointF(-6,-5));
-      origVerts.Add(new PointF(-4,-3));
-      origVerts.Add(new PointF(-1,-3));
-      origVerts.Add(new PointF(1,-1));
-      origVerts.Add(new PointF(7,-1));
-      origVerts.Add(new PointF(8,0));
+      origVerts.Add(new List<PointF>());
+      origVerts[0].Add(new PointF(16,0));
+      origVerts[0].Add(new PointF(14,2));
+      origVerts[0].Add(new PointF(2,2));
+      origVerts[0].Add(new PointF(-2,6));
+      origVerts[0].Add(new PointF(-8,6));
+      origVerts[0].Add(new PointF(-12,10));
+      origVerts[0].Add(new PointF(6,10));
+      origVerts[0].Add(new PointF(6,12));
+      origVerts[0].Add(new PointF(-14,12));
+      origVerts[0].Add(new PointF(-14,2));
+      origVerts[0].Add(new PointF(-16,2));
+      origVerts[0].Add(new PointF(-16,-2));
+      origVerts[0].Add(new PointF(-14,-2));
+      origVerts[0].Add(new PointF(-14,-12));
+      origVerts[0].Add(new PointF(6,-12));
+      origVerts[0].Add(new PointF(6,-10));
+      origVerts[0].Add(new PointF(-12,-10));
+      origVerts[0].Add(new PointF(-8,-6));
+      origVerts[0].Add(new PointF(-2,-6));
+      origVerts[0].Add(new PointF(2,-2));
+      origVerts[0].Add(new PointF(14,-2));
+      origVerts[0].Add(new PointF(16,0));
       bulCooldown=0;
       bulTimer=500;
     }
@@ -74,7 +75,7 @@ namespace Definitely_Not_Space_Invaders
     }
     public void render(Graphics g,int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul,bool mousedown) {
       ai(scrWidth,scrHeight,msPassed,ref bul,mousedown);
-      verts=new List<PointF>();
+      verts=new List<List<PointF> >();
       timestamp+=(int)(msPassed);
       int partSpawnTime=30;
       if(timestamp>partSpawnTime) {
@@ -82,11 +83,6 @@ namespace Definitely_Not_Space_Invaders
         velocity/=1000;
         particles.Add(new particle(x-8,y,2,r.Next(160,200),velocity,-velocity/500,500,r.Next(0,7)));
         timestamp-=partSpawnTime;
-      }
-      for(int z=0;z<origVerts.Count;z++) {
-        verts.Add(new PointF((float)(2*origVerts[z].X+x),(float)(2*origVerts[z].Y+y)));
-            //(float)(2*origVerts[z].X*Math.Cos(ang*Math.PI/180)-2*origVerts[z].Y*Math.Sin(ang*Math.PI/180)+x),
-            //(float)(2*origVerts[z].X*Math.Sin(ang*Math.PI/180)+2*origVerts[z].Y*Math.Cos(ang*Math.PI/180)+y)));
       }
       for(int z=0;z<particles.Count;z++) {
         particles[z].render(g,scrWidth,scrHeight,msPassed);
@@ -96,7 +92,16 @@ namespace Definitely_Not_Space_Invaders
         }
       }
       SolidBrush b=new SolidBrush(Color.FromArgb(255,255,255));
-      g.FillPolygon(b,verts.ToArray());
+      for(int t=0;t<origVerts.Count;t++) {
+        verts.Add(new List<PointF>());
+        for(int z=0;z<origVerts[t].Count;z++) {
+          verts[t].Add(new PointF(
+              (float)(origVerts[t][z].X*Math.Cos(ang*Math.PI/180)-origVerts[t][z].Y*Math.Sin(ang*Math.PI/180)+x),
+              (float)(origVerts[t][z].X*Math.Sin(ang*Math.PI/180)+origVerts[t][z].Y*Math.Cos(ang*Math.PI/180)+y)));
+        }
+        b.Color=Color.FromArgb(255,255,255);
+        g.FillPolygon(b,verts[t].ToArray());
+      }
       Font f=new Font("Segoi UI",10);
       g.DrawString(Convert.ToString(curHP)+"/"+Convert.ToString(maxHP),f,b,new PointF(5,5));
     }

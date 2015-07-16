@@ -15,6 +15,26 @@ namespace Definitely_Not_Space_Invaders
       ang=180;
       maxHP=5;
       curHP=maxHP;
+      origVerts=new List<List<PointF> >();
+      colors=new List<Color>();
+      origVerts.Add(new List<PointF>());
+      float rad=45;
+      origVerts[0].Add(new PointF(
+                             (float)(rad),
+                             (float)(0)));
+      origVerts[0].Add(new PointF(
+                             (float)(rad*Math.Cos(72*Math.PI/180)),
+                             (float)(rad*Math.Sin(72*Math.PI/180))));
+      origVerts[0].Add(new PointF(
+                             (float)(rad*Math.Cos(144*Math.PI/180)),
+                             (float)(rad*Math.Sin(144*Math.PI/180))));
+      origVerts[0].Add(new PointF(
+                             (float)(rad*Math.Cos(216*Math.PI/180)),
+                             (float)(rad*Math.Sin(216*Math.PI/180))));
+      origVerts[0].Add(new PointF(
+                             (float)(rad*Math.Cos(288*Math.PI/180)),
+                             (float)(rad*Math.Sin(288*Math.PI/180))));
+      colors.Add(Color.FromArgb(190,0,190));
     }
     public override void ai(int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul) {
       double spd=.070;
@@ -23,30 +43,13 @@ namespace Definitely_Not_Space_Invaders
       else
         curHP=0;
     }
-    public override void render(Graphics g,int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul) {
-      ai(scrWidth,scrHeight,msPassed,ref bul);
-      int rad=45;
-      verts=new List<Point>();
-      verts.Add(new Point((int)(x+rad*Math.Cos(ang*Math.PI/180) + .5),
-                         (int)(y+rad*Math.Sin(ang*Math.PI/180)+.5)));
-      verts.Add(new Point((int)(x + rad * Math.Cos((ang - 72) * Math.PI / 180) + .5),
-                         (int)(y + rad * Math.Sin((ang - 72) * Math.PI / 180) + .5)));
-      verts.Add(new Point((int)(x+rad*Math.Cos((ang-144)*Math.PI/180)+.5),
-                         (int)(y+rad*Math.Sin((ang-144)*Math.PI/180)+.5)));
-      verts.Add(new Point((int)(x+rad*Math.Cos((ang+144)*Math.PI/180)+.5),
-                         (int)(y+rad*Math.Sin((ang+144)*Math.PI/180)+.5)));
-      verts.Add(new Point((int)(x+rad*Math.Cos((ang+72) *Math.PI/180)+.5),
-                         (int)(y+rad*Math.Sin((ang+72)*Math.PI/180)+.5)));
-      SolidBrush b=new SolidBrush(Color.FromArgb(190,0,190));
-      g.FillPolygon(b,verts.ToArray());
-    }
     public override void deathAnimation(ref List<particle> par) {
       if(x<=-20) {//no animation if it died by just moving offscreen
       }
       else {//animation if it was killed by the player
       }
     }
-    public override void hit(double hitx,double hity,ref List<particle> par) {
+    public override void hit(double hitx,double hity,int num,ref List<particle> par) {
       curHP--;
     }
   }

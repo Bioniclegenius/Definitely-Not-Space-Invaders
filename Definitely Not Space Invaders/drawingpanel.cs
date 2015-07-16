@@ -59,9 +59,11 @@ namespace Definitely_Not_Space_Invaders {
 
         for(int x=0;x<bullets.Count;x++) {//all enemy bullets
           bullets[x].render(g,this.Width,this.Height,time);
-          if(bullets[x].hit(player.verts)) {
-            bullets[x].done=true;
-            player.curHP--;
+          for(int y=0;y<player.verts.Count;y++) {
+            if(bullets[x].hit(player.verts[y])&&!bullets[x].done) {
+              bullets[x].done=true;
+              player.curHP--;
+            }
           }
           if(bullets[x].done) {
             bullets.RemoveAt(x);
@@ -71,11 +73,16 @@ namespace Definitely_Not_Space_Invaders {
 
         for(int x=0;x<playerbullets.Count;x++) {//the player's bullets
           playerbullets[x].render(g,this.Width,this.Height,time);
-          for(int y=0;y<enemies.Count;y++)
-            if(playerbullets[x].hit(enemies[y].verts)) {
-              playerbullets[x].done=true;
-              enemies[y].hit(playerbullets[x].x,playerbullets[x].y,ref particles);
+          for(int y=0;y<enemies.Count;y++) {
+            if(enemies[y].verts!=null) {
+              for(int t=0;t<enemies[y].verts.Count;t++) {
+                if(playerbullets[x].hit(enemies[y].verts[t])&&!playerbullets[x].done&&enemies[y].curHP>0) {
+                  playerbullets[x].done=true;
+                  enemies[y].hit(playerbullets[x].x,playerbullets[x].y,t,ref particles);
+                }
+              }
             }
+          }
           if(playerbullets[x].done) {
             playerbullets.RemoveAt(x);
             x--;
