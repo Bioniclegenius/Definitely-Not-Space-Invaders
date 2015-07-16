@@ -107,6 +107,9 @@ namespace Definitely_Not_Space_Invaders
     }
     public void deathAnimation() {
     }
+    public void hit(double hitx,double hity,int num,ref List<particle> par) {
+      curHP--;
+    }
     public void mousemove(int mx,int my) {
       goalx=mx;
       goaly=my;

@@ -62,7 +62,7 @@ namespace Definitely_Not_Space_Invaders {
           for(int y=0;y<player.verts.Count;y++) {
             if(bullets[x].hit(player.verts[y])&&!bullets[x].done) {
               bullets[x].done=true;
-              player.curHP--;
+              player.hit(bullets[x].x,bullets[x].y,y,ref particles);
             }
           }
           if(bullets[x].done) {
