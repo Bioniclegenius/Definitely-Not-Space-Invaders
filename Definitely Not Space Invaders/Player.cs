@@ -81,7 +81,7 @@ namespace Definitely_Not_Space_Invaders
       if(timestamp>partSpawnTime) {
         float velocity=r.Next(750,1500);
         velocity/=1000;
-        particles.Add(new particle(x-8,y,2,r.Next(160,200),velocity,-velocity/500,500,r.Next(0,7)));
+        particles.Add(new particle(x-16,y,2,r.Next(160,200),velocity,-velocity/500,500,r.Next(0,7)));
         timestamp-=partSpawnTime;
       }
       for(int z=0;z<particles.Count;z++) {

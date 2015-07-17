@@ -87,7 +87,7 @@ namespace Definitely_Not_Space_Invaders {
     public void render(Graphics gr,int scrWidth,int scrHeight,long msPassed) {
       ai(scrWidth,scrHeight,msPassed);
       SolidBrush br=new SolidBrush(Color.FromArgb((int)(255.0*curLife/maxLife),r,g,b));
-      gr.FillEllipse(br,(int)(x-rad+.5),(int)(y-rad+.5),(int)(2*rad+1.5),(int)(2*rad+1.5));
+      gr.FillEllipse(br,(int)(x-rad-.5),(int)(y-rad-.5),(int)(2*rad+1.5),(int)(2*rad+1.5));
     }
   }
 }

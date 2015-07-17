@@ -89,6 +89,10 @@ namespace Definitely_Not_Space_Invaders {
       origVerts[origVerts.Count-1].Add(new PointF(0,30));
       origVerts[origVerts.Count-1].Add(new PointF(0,16));
       origVerts[origVerts.Count-1].Add(new PointF(-5,16));
+      origVerts[origVerts.Count-1].Add(new PointF(-5,30));
+      origVerts[origVerts.Count-1].Add(new PointF(-20,30));
+      origVerts[origVerts.Count-1].Add(new PointF(-20,31));
+      origVerts[origVerts.Count-1].Add(new PointF(-20,32));
       colors.Add(Color.FromArgb(127,127,127));
       origVerts.Add(new List<PointF>());//right wing
       origVerts[origVerts.Count-1].Add(new PointF(-10,40));
@@ -104,7 +108,6 @@ namespace Definitely_Not_Space_Invaders {
       origVerts[origVerts.Count-1].Add(new PointF(-14,24));
       origVerts[origVerts.Count-1].Add(new PointF(-16,26));
       origVerts[origVerts.Count-1].Add(new PointF(-18,30));
-      origVerts[origVerts.Count-1].Add(new PointF(-18,31));
       origVerts[origVerts.Count-1].Add(new PointF(-18,32));
       origVerts[origVerts.Count-1].Add(new PointF(-16,36));
       origVerts[origVerts.Count-1].Add(new PointF(-14,38));
@@ -121,6 +124,10 @@ namespace Definitely_Not_Space_Invaders {
       origVerts[origVerts.Count-1].Add(new PointF(0,-30));
       origVerts[origVerts.Count-1].Add(new PointF(0,-16));
       origVerts[origVerts.Count-1].Add(new PointF(-5,-16));
+      origVerts[origVerts.Count-1].Add(new PointF(-5,-30));
+      origVerts[origVerts.Count-1].Add(new PointF(-20,-30));
+      origVerts[origVerts.Count-1].Add(new PointF(-20,-31));
+      origVerts[origVerts.Count-1].Add(new PointF(-20,-32));
       colors.Add(Color.FromArgb(127,127,127));
       origVerts.Add(new List<PointF>());//left wing
       origVerts[origVerts.Count-1].Add(new PointF(-10,-40));
@@ -136,7 +143,6 @@ namespace Definitely_Not_Space_Invaders {
       origVerts[origVerts.Count-1].Add(new PointF(-14,-24));
       origVerts[origVerts.Count-1].Add(new PointF(-16,-26));
       origVerts[origVerts.Count-1].Add(new PointF(-18,-30));
-      origVerts[origVerts.Count-1].Add(new PointF(-18,-31));
       origVerts[origVerts.Count-1].Add(new PointF(-18,-32));
       origVerts[origVerts.Count-1].Add(new PointF(-16,-36));
       origVerts[origVerts.Count-1].Add(new PointF(-14,-38));
@@ -225,12 +231,12 @@ namespace Definitely_Not_Space_Invaders {
         if(verts.Count>=5) {
           float acc=r.Next(200,400);
           acc/=1000;
-          par.Add(new particle(verts[4][13].X,verts[4][13].Y,2,ang+r.Next(160,201),acc,-acc/600,600,r.Next(0,7)));
+          par.Add(new particle(verts[3][13].X,verts[3][13].Y,2,ang+r.Next(160,201),acc,-acc/600,600,r.Next(0,7)));
         }
         if(verts.Count>=7) {
           float acc=r.Next(200,400);
           acc/=1000;
-          par.Add(new particle(verts[6][13].X,verts[6][13].Y,2,ang+r.Next(160,201),acc,-acc/600,600,r.Next(0,7)));
+          par.Add(new particle(verts[5][13].X,verts[5][13].Y,2,ang+r.Next(160,201),acc,-acc/600,600,r.Next(0,7)));
         }
         slowparcounter-=4;
       }

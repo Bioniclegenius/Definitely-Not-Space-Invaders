@@ -27,6 +27,7 @@ namespace Definitely_Not_Space_Invaders {
       this.MouseUp+=new System.Windows.Forms.MouseEventHandler(this.MouseUpEvent);
       stars=new List<star>();
       enemies=new List<enemycontainer>();
+      enemies.Add(new CannonWingEnemy(this.Width,this.Height));
       bullets=new List<bullet>();
       playerbullets=new List<bullet>();
       particles=new List<particle>();
