@@ -36,9 +36,9 @@ namespace Definitely_Not_Space_Invaders {
     //On the angle, let's agree to use Degrees as a standard. 0 is right, 90 is up, and so on.
     public int curHP,maxHP;
     public static Random r=new Random();
-    public void render(Graphics g,int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul) {
+    public void render(Graphics g,int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul,ref List<particle> par) {
       //calls AI, then draws enemy
-      ai(scrWidth,scrHeight,msPassed,ref bul);
+      ai(scrWidth,scrHeight,msPassed,ref bul,ref par);
       verts=new List<List<PointF> >();
       SolidBrush b=new SolidBrush(Color.FromArgb(255,255,255));
       for(int t=0;t<origVerts.Count;t++) {
@@ -53,7 +53,7 @@ namespace Definitely_Not_Space_Invaders {
       }
     }
     public abstract void deathAnimation(ref List<particle> par);//Gets called when curHP<=0. Just add particles or whatever, and go
-    public abstract void ai(int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul);//the brains of the operation
+    public abstract void ai(int scrWidth,int scrHeight,long msPassed,ref List<bullet> bul,ref List<particle> par);//the brains of the operation
     public enemycontainer() {//Make sure in your constructors to pass in screen size
       //curHP=maxHP;
       //^

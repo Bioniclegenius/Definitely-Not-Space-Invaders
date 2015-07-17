@@ -47,6 +47,7 @@
     <Compile Include="BasicTriangleEnemy.cs" />
     <Compile Include="BossPentagon.cs" />
     <Compile Include="bullet.cs" />
+    <Compile Include="CannonWingEnemy.cs" />
     <Compile Include="drawingpanel.cs">
       <SubType>Component</SubType>
     </Compile>

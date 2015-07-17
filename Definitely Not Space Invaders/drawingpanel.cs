@@ -96,17 +96,19 @@ namespace Definitely_Not_Space_Invaders {
             x--;
           }
           else
-            enemies[x].render(g,this.Width,this.Height,time,ref bullets);
+            enemies[x].render(g,this.Width,this.Height,time,ref bullets,ref particles);
         }
 
         player.render(g,this.Width,this.Height,time,ref playerbullets,mouseheld);//render the player
 
-
-        if(player.curHP<=0) {
+        if(player.curHP<=0) {//player, is u ded yet bro?
           player.deathAnimation();
         }
-        if(lasttime%10000<time)
+
+        if(lasttime%7000<time)//spawning various enemies, I guess
           enemies.Add(new BasicTriangleEnemy(this.Width,this.Height));
+        if(lasttime%30000<time)
+          enemies.Add(new CannonWingEnemy(this.Width,this.Height));
       }
       Invalidate();
     }
