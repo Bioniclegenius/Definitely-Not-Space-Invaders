@@ -13,6 +13,7 @@ namespace Definitely_Not_Space_Invaders {
     public drawingpanel p;
     public Form1() {
       InitializeComponent();
+      this.Text = "Definitely Not Space Invaders";
     }
     private void Form1_Load(object sender,EventArgs e) {
       int scrWidth=800;
